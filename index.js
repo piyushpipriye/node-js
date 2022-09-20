@@ -15,7 +15,7 @@
 
 // arr=[1,2,3,4,5,6]
 // let ar = arr.filter((items)=>{
-// return items>1
+// return items>1                                                   // fs is for file system to manage file related operations 
 // })
 // console.log(ar)
 // const fs = require('fs');
@@ -27,3 +27,8 @@
 //     res.write("<h1>hello, this is piyush pipriye")
 //     res.end()
 // }).listen(4500)
+
+
+//var colors = require('colors');
+//console.log("hello".green,"all".red)        // assign color to text
+
