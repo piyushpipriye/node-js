@@ -60,3 +60,40 @@
 // else{
 //     console.log("invalid choice")
 // }\
+
+// const fs = require('fs')
+// const path = require('path');       // importing path module/package 
+// const dirpath =  path.join(__dirname,'\files')
+// fs.readdir(__dirname,(err, files) =>{           // __dirname returns the current directory of working
+//     //handling error
+//     if (err) {
+//         return console.log('Unable to scan directory: ' + err);
+//     } 
+//     //listing all files using forEach
+//     files.forEach(function (file) {
+//         // Do whatever you want to do with the file
+//         console.log(file); 
+//     });
+// });
+
+        // CRUD Operation in fie system
+// const fs = require('fs')                        
+// const path = require('path')
+// const dirpath = path.join(__dirname,'crud')
+// const filePath = `${dirpath}/data.txt`
+// fs.writeFileSync(filePath,"Simple text")        // creates a new file 
+
+// fs.readFile(filePath,'utf8',(err,items)=>{      // reads an existing file
+//     console.log(items)
+// })
+ 
+// fs.appendFile(filePath,'for demo',(err)=>{      // update the file content
+//     if(!err) console.log("file updated")
+// })
+
+// fs.rename(filePath,`${dirpath}/data1.txt`,(err) => {     //  rename the file name
+//     if(!err) console.log("file name is updated") 
+// })
+
+// fs.unlinkSync(`${dirpath}/data1.txt`)       // removes the file from directory
+
