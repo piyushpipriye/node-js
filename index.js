@@ -160,7 +160,7 @@
 //     <a href="/data"target="_blank">Go to data page </a>
 //     </center>
 //     `)                                                          // rendering html tags
-    
+
 //     //     res.send(`
 //       // <form>
 //     //   <label for="username">Username:</label><br>
