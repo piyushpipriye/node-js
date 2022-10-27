@@ -43,39 +43,73 @@
 // // fetch()
 
 
+// const express = require('express');
+// require('./config')
+// const products = require('./product')
+
+// const app = express();
+// app.use(express.json())
+
+// app.post('/insert', async (req, resp) => {
+//     let data = new products(req.body)
+//     let result = await data.save()
+//     resp.send(result);
+// })
+
+// app.get('/get', async (req, resp) => {
+//     let data = await products.find()
+//     resp.send(data)
+// })
+
+// app.delete('/delete', async (req, resp) => {
+//     let res = await products.deleteOne(
+//         req.body
+//     )
+//     resp.send(res)
+// })
+
+// app.put('/update', async (req, resp) => {
+//     let result = await products.updateOne(
+//         { name: req.body.name },
+//         {
+//             $set: req.body
+//         }
+//     )
+//     resp.send(result)
+// })
+
+// app.get('/search/:key', async (req, resp) => {  // search method functionality in URL
+//     let data = await products.find(
+//         {
+//             "$or": [
+//                 { "name": { $regex: req.params.key } },
+//                 { "brand": { $regex: req.params.key } },
+//                 { "category": { $regex: req.params.key } }
+//             ]
+//         }
+//     );
+//     resp.send(data)
+// })
+
+
+// app.listen(5000);
+
 const express = require('express');
-require('./config')
-const products = require('./product')
-
+const multer = require('multer');
 const app = express();
-app.use(express.json())
 
-app.post('/create', async (req, resp) => {
-    let data = new products(req.body)
-    let result = await data.save()
-    resp.send(result);
-})
-
-app.get('/get', async (req, resp) => {
-    let data = await products.find()
-    resp.send(data)
-})
-
-app.delete('/delete', async (req, resp) => {
-    let res = await products.deleteOne(
-        req.body
-    )
-    resp.send(res)
-})
-
-app.put('/update', async (req, resp) => {
-    let result = await products.update(
-        { name: req.body.name },
-        {
-            $set: req.body
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, "uploads")
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.filename + "-" + Date.now() + ".jpg")
         }
-    )
-    resp.send(result)
+    })
+}).single("user_file")
+app.post('/upload', upload, async (req, resp) => {
+    resp.send("file upload")
 })
 
-app.listen(5000);
+app.listen(5000)
