@@ -1,5 +1,5 @@
 const express = require('express');
-const multer = require('multer');
+const multer = require('multer');// package used for file upload
 const app = express();
 
 const upload = multer({
