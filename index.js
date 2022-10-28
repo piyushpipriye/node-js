@@ -1,27 +1,22 @@
-const express = require('express')
-const app = express()
-const reqFilter = require('./middleware')
-const route = express.Router();
+const app = require('./app')
+//console.log("sub")
+var a = 10
+var b = 20
+console.log(a, b)
+a = "123"
+b = 123
+if (a === b) {
+    console.log("got it")
+}
 
-route.use(reqFilter);
-// app.use(reqFilter)                           // used for application level route
+console.log(app.x + app.y)
+console.log(app.z())
 
-app.get('/', (req, res) => {
-    res.send("Welcome to home page")
+
+arr = [1, 2, 3, 4, 5, 6]
+let ar = arr.filter((items) => {
+    return items > 1
 })
+console.log(ar)
 
-app.get('/users', reqFilter, (req, res) => {    //applies middleware to specific that route only    // apply middleware to single route
-    res.send("Welcome to users page")
-})
 
-route.get('/about', (req, res) => {                 //group level route to apply middleware
-    res.send("Welcome to about page")
-})
-
-route.get('/contact', (req, res) => {
-    res.send("Welcome to contact page")         //group level route to apply middleware
-})
-
-app.use('/', route);
-
-app.listen(5000)
