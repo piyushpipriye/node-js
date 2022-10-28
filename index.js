@@ -1,31 +1,25 @@
-// event for how many times api called 
+const mysql = require('mysql');
+const con = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'test'
+});
 
-const express = require('express');
-const EventEmitter = require('events')
-const app = express();
+// con.connect((err) => {
+//     if (err) {                            // checking database is connected or not
+//         console.warn("error")
+//     }
+//     else {                                       
+//         console.warn("connected")
+//     }
+// })
 
-const event = new EventEmitter();       // creating event object
-
-let count = 0
-event.on("countApi", () => {        // event handling
-    count++;
-    console.log("event called", count)
+con.query('select * from users', (err, result) => {
+    if (err) {
+        console.warn(err)
+    }
+    else {
+        console.warn(result)
+    }
 })
-
-
-app.get('/', (req, resp) => {
-    resp.send("Called")
-    event.emit("countApi")          // event calling
-});
-
-app.get('/search', (req, resp) => {
-    resp.send("search Called")
-    event.emit("countApi")
-});
-
-app.get('/update', (req, resp) => {
-    resp.send("update Called")
-    event.emit("countApi")
-});
-
-app.listen(5000)
